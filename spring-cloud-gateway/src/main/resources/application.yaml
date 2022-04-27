@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      fetch-registry: true
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: shop-backend-api
+          uri: lb://SHOP-BACKEND-API
+          predicates:
+            - Path=/api/v1/**
+
+        - id: shop-admin
+          uri: lb://SHOP-ADMIN
+          predicates:
+            - Path=/admin/**
+
+        - id: shop-picture-service-api
+          uri: lb://SHOP-PICTURE-SERVICE-API
+          predicates:
+            - Path=/api/**

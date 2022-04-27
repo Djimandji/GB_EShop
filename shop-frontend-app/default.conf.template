@@ -1,0 +1,32 @@
+server {
+    listen 80;
+    server_name localhost;
+    index index.html;
+    root  /usr/share/nginx/html;
+
+    location / {
+        try_files $uri $uri/ /index.html =404;
+    }
+
+    location /admin {
+        proxy_pass http://shop-admin-app:8080/admin;
+        proxy_set_header Host $http_host;
+    }
+
+    location /api {
+        proxy_pass http://shop-backend-api-app:8080/api;
+    }
+
+    location /api/picture {
+        proxy_pass http://picture-service-app:8080/api/picture;
+    }
+
+    location /api/v1/socket-channel {
+        proxy_pass http://shop-backend-api-app:8080/api/v1/socket-channel;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+    }
+}

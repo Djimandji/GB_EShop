@@ -31,4 +31,10 @@
         <tagDatabase tag="v-2.1"/>
     </changeSet>
 
+    <include file="v-3.0/root.changelog.xml" relativeToChangelogFile="true"/>
+
+    <changeSet id="300" author="dji">
+        <tagDatabase tag="v-3.0"/>
+    </changeSet>
+
 </databaseChangeLog>

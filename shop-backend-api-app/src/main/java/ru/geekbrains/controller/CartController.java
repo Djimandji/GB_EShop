@@ -29,6 +29,7 @@ public class CartController {
         this.productService = productService;
     }
 
+
     @PostMapping(produces = "application/json", consumes = "application/json")
     public List<LineItem> addToCart(@RequestBody AddLineItemDto addLineItemDto) {
         logger.info("New LineItem. ProductId = {}, qty = {}", addLineItemDto.getProductId(), addLineItemDto.getQty());

@@ -18,4 +18,6 @@ public interface CartService extends Serializable {
     List<LineItem> getLineItems();
 
     BigDecimal getSubTotal();
+
+    void clear();
 }

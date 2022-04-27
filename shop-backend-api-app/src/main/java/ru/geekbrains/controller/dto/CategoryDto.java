@@ -1,7 +1,10 @@
 package ru.geekbrains.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.io.Serializable;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public class CategoryDto implements Serializable {
 
     private Long id;
