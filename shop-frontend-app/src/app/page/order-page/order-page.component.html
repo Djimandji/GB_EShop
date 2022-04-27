@@ -1,0 +1,29 @@
+<div class="row py-2">
+
+  <div class="col-md-12 col-xs-12 mb-3">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Date</th>
+        <th scope="col">Price</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of orders">
+        <th scope="row">{{order.id}}</th>
+        <td>{{order.orderDate}}</td>
+        <td>{{order.price}}</td>
+        <td>{{order.status}}</td>
+        <td>
+          <a class="btn btn-success me-2" href="#"><i class="fas fa-edit"></i></a>
+          <a class="btn btn-danger" href="#"><i class="fas fa-stop"></i></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

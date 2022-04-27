@@ -3,6 +3,7 @@ package ru.geekbrains.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.controller.dto.OrderDto;
 import ru.geekbrains.controller.dto.OrderLineItemDto;
@@ -13,6 +14,7 @@ import ru.geekbrains.persist.model.Order;
 import ru.geekbrains.persist.model.OrderLineItem;
 import ru.geekbrains.persist.model.Product;
 import ru.geekbrains.persist.model.User;
+import ru.geekbrains.service.dto.OrderStatus;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -32,17 +34,21 @@ public class OrderServiceImpl implements OrderService {
 
     private final ProductRepository productRepository;
 
+    private final SimpMessagingTemplate template;
+
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository,
                             CartService cartService,
                             UserRepository userRepository,
-                            ProductRepository productRepository
+                            ProductRepository productRepository,
+                            SimpMessagingTemplate template
                             ) {
         this.orderRepository = orderRepository;
         this.cartService = cartService;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
+        this.template = template;
     }
 
     public List<OrderDto> findOrdersByUsername(String username) {
@@ -107,6 +113,7 @@ public class OrderServiceImpl implements OrderService {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                template.convertAndSend("/order_out/order", new OrderStatus(order.getId(), status.toString()));
             }
         }).start();
     }

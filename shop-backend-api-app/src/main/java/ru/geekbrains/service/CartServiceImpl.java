@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.controller.dto.ProductDto;
-import ru.geekbrains.persist.model.Product;
 import ru.geekbrains.service.dto.LineItem;
 
 import java.math.BigDecimal;
@@ -40,7 +39,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void removeProductQty(ProductDto productDto, String color, String material, int qty) {
-        //todo
+        // TODO
     }
 
     @Override

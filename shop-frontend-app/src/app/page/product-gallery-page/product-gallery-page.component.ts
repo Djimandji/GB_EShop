@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../service/product.service";
 import {Product} from "../../model/product";
 import {Page} from "../../model/page";
+import {OrderStatusService} from "../../service/order-status.service";
 
 @Component({
   selector: 'app-product-gallery-page',
@@ -46,5 +47,6 @@ export class ProductGalleryPageComponent implements OnInit {
     }, err => {
       console.log(`Error loading products ${err}`);
     });
+
   }
 }

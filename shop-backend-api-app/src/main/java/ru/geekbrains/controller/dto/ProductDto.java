@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 
-
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public class ProductDto implements Serializable {
 
     private Long id;
